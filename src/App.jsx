@@ -1,24 +1,10 @@
 import { useState } from "react";
 import "./App.css";
 import { useEffect } from "react";
+import getTodos from "./services";
 
 function App() {
-  // const [todos, setTodos] = useState([]);
-
-  // useEffect(() => {
-  //   let savedTodos = localStorage.getItem("todos");
-  //   console.log(savedTodos);
-  //   setTodos(savedTodos ? JSON.parse(savedTodos) : []);
-  // }, []);
-
-  // useEffect(() => {
-  //   setTodos(localStorage.setItem("todos", JSON.stringify(todos)));
-  // }, [todos]);
-
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
+  const [todos, setTodos] = useState(() => getTodos());
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
