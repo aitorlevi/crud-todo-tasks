@@ -5,5 +5,5 @@ export function getTodos() {
 
 export function getPriorities() {
   const priorities = localStorage.getItem("priorities");
-  return priorities ? JSON.parse(priorities) : [];
+  return priorities ? JSON.parse(priorities) : ["low", "medium", "high"];
 }
