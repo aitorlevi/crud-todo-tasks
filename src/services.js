@@ -3,7 +3,12 @@ export function getTodos() {
   return savedTodos ? JSON.parse(savedTodos) : [];
 }
 
-export function getPriorities() {
-  const priorities = localStorage.getItem("priorities");
-  return priorities ? JSON.parse(priorities) : ["low", "medium", "high"];
+export function getLists() {
+  const todos = localStorage.getItem("todos");
+  if (todos) {
+    let parsedTodos = JSON.parse(todos);
+    return parsedTodos.length > 0 ? parsedTodos : [];
+  } else {
+    return [];
+  }
 }

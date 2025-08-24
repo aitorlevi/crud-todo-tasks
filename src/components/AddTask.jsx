@@ -1,6 +1,7 @@
 import React from "react";
+import { PRIORITIES } from "../constants";
 
-export default function AddTask({ priorities }) {
+export default function AddTask({ lists }) {
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -11,6 +12,7 @@ export default function AddTask({ priorities }) {
   }
   return (
     <form action="add" onSubmit={handleSubmit}>
+      <h3>Agregar tarea</h3>
       <label>
         Título
         <input name="title" type="text" required />
@@ -20,9 +22,16 @@ export default function AddTask({ priorities }) {
         <input name="description" type="text" required />
       </label>
       <select name="priority">
-        {priorities.map((priority, index) => (
-          <option key={index} value={priority}>
-            {priority}
+        {PRIORITIES.map((priority) => (
+          <option key={priority.id} value={priority.value}>
+            {priority.value}
+          </option>
+        ))}
+      </select>
+      <select name="list">
+        {lists.map((list, index) => (
+          <option key={index} value={list.title}>
+            {list.title}
           </option>
         ))}
       </select>
