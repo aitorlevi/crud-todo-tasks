@@ -1,13 +1,13 @@
-export function getTodos() {
-  const savedTodos = localStorage.getItem("todos");
-  return savedTodos ? JSON.parse(savedTodos) : [];
+export function getTaskLists() {
+  const savedtaskLists = localStorage.getItem("taskLists");
+  return savedtaskLists ? JSON.parse(savedtaskLists) : [];
 }
 
 export function getLists() {
-  const todos = localStorage.getItem("todos");
-  if (todos) {
-    let parsedTodos = JSON.parse(todos);
-    return parsedTodos.length > 0 ? parsedTodos : [];
+  const taskLists = localStorage.getItem("taskLists");
+  if (taskLists) {
+    let parsedtaskLists = JSON.parse(taskLists);
+    return parsedtaskLists.length > 0 ? parsedtaskLists : [];
   } else {
     return [];
   }

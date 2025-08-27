@@ -1,17 +1,16 @@
 import React from "react";
 import { PRIORITIES } from "../constants";
 
-export default function AddTask({ lists }) {
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const formData = new FormData(form);
+export default function AddTask({ taskLists, onAddTask }) {
+  function onSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
-    localStorage.setItem("todos", JSON.stringify(formJson));
+    if (formJson.priority) formJson.priority = Number(formJson.priority);
+    if (formJson.list) formJson.list = Number(formJson.list);
+    onAddTask(formJson);
   }
+
   return (
-    <form action="add" onSubmit={handleSubmit}>
+    <form action={onSubmit}>
       <h3>Agregar tarea</h3>
       <label>
         Título
@@ -21,17 +20,17 @@ export default function AddTask({ lists }) {
         Descripción
         <input name="description" type="text" required />
       </label>
-      <select name="priority">
+      <select name="priority" required>
         {PRIORITIES.map((priority) => (
-          <option key={priority.id} value={priority.value}>
+          <option key={priority.id} value={priority.id}>
             {priority.value}
           </option>
         ))}
       </select>
-      <select name="list">
-        {lists.map((list, index) => (
-          <option key={index} value={list.title}>
-            {list.title}
+      <select name="list" required>
+        {taskLists?.map((taskList) => (
+          <option key={taskList.id} value={taskList.id}>
+            {taskList.title}
           </option>
         ))}
       </select>

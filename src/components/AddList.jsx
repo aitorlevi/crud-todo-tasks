@@ -1,14 +1,12 @@
 import React from "react";
-import { getLists } from "../services";
 
-export default function AddList() {
+export default function AddList({ taskLists, onAddList }) {
   function onSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
-    if (getLists().includes(formJson.title)) {
+    if (taskLists.find((list) => list.title === formJson.title)) {
       return;
     }
-    formJson.tasks = [];
-    localStorage.setItem("todos", JSON.stringify(formJson));
+    onAddList(formJson);
   }
 
   return (
