@@ -3,9 +3,9 @@ import "./App.css";
 import { useEffect } from "react";
 import { getTaskLists } from "./services";
 import useModal from "./hooks/useModal";
-import AddTask from "./components/AddTask";
+import CreateTask from "./components/CreateTask";
 import Modal from "./components/Modal";
-import AddList from "./components/AddList";
+import CreateTaskList from "./components/CreateTaskList";
 import List from "./components/List";
 
 function generateId() {
@@ -21,21 +21,26 @@ function App() {
   }, [taskLists]);
 
   function renderForm() {
-    if (contentModal === "addTask") {
-      return <AddTask taskLists={taskLists} onAddTask={addNewTask} />;
-    } else if (contentModal === "addList") {
-      return <AddList taskLists={taskLists} onAddList={addNewTaskList} />;
+    if (contentModal === "createTask") {
+      return <CreateTask taskLists={taskLists} onCreateTask={createTask} />;
+    } else if (contentModal === "createList") {
+      return (
+        <CreateTaskList
+          taskLists={taskLists}
+          onCreateTaskList={createTaskList}
+        />
+      );
     }
   }
 
-  function addNewTaskList(newTaskList) {
+  function createTaskList(newTaskList) {
     newTaskList.tasks = [];
     newTaskList.id = generateId();
     newTaskList.order = taskLists.length + 1;
     setTaskLists([...taskLists, newTaskList]);
   }
 
-  function addNewTask(newTask) {
+  function createTask(newTask) {
     const taskListIndex = taskLists.findIndex(
       (list) => list.id === newTask.list
     );
@@ -52,17 +57,20 @@ function App() {
 
   return (
     <>
-      <h1>TODO APP</h1>
+      <header className="header">
+        <h1>Task Manager</h1>
+      </header>
+
       {taskLists.length > 0 ? (
         taskLists.map((list) => <List key={list.id} data={list} />)
       ) : (
         <h2>No hay nada pendiente</h2>
       )}
-      <button type="button" onClick={() => openModal("addTask")}>
-        Añadir tarea
+      <button type="button" onClick={() => openModal("createTask")}>
+        Create Task
       </button>
-      <button type="button" onClick={() => openModal("addList")}>
-        Añadir lista
+      <button type="button" onClick={() => openModal("createList")}>
+        Create List
       </button>
       {contentModal && <Modal onClose={closeModal}>{renderForm()}</Modal>}
     </>

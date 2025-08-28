@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function AddList({ taskLists, onAddList }) {
+export default function CreateTaskList({ taskLists, onCreateTaskList }) {
   function onSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
     if (taskLists.find((list) => list.title === formJson.title)) {
       return;
     }
-    onAddList(formJson);
+    onCreateTaskList(formJson);
   }
 
   return (

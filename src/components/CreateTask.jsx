@@ -1,12 +1,12 @@
 import React from "react";
 import { PRIORITIES } from "../constants";
 
-export default function AddTask({ taskLists, onAddTask }) {
+export default function CreateTask({ taskLists, onCreateTask }) {
   function onSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
     if (formJson.priority) formJson.priority = Number(formJson.priority);
     if (formJson.list) formJson.list = Number(formJson.list);
-    onAddTask(formJson);
+    onCreateTask(formJson);
   }
 
   return (
