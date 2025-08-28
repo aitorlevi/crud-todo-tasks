@@ -1,5 +1,4 @@
 import React from "react";
-import Item from "./item.jsx";
 import Task from "./Task.jsx";
 
 export default function TaskList({ data }) {
