@@ -1,6 +1,4 @@
-import { useState } from "react";
-import "./App.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getTaskLists } from "./services";
 import useModal from "./hooks/useModal";
 import CreateTask from "./components/CreateTask";
@@ -42,7 +40,7 @@ function App() {
 
   function createTask(newTask) {
     const taskListIndex = taskLists.findIndex(
-      (list) => list.id === newTask.list
+      (list) => list.id === newTask.list,
     );
     const newTaskList = { ...taskLists[taskListIndex] };
     newTask.id = generateId();
