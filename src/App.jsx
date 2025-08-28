@@ -6,7 +6,7 @@ import useModal from "./hooks/useModal";
 import CreateTask from "./components/CreateTask";
 import Modal from "./components/Modal";
 import CreateTaskList from "./components/CreateTaskList";
-import List from "./components/List";
+import TaskList from "./components/TaskList";
 
 function generateId() {
   return new Date().getTime();
@@ -58,21 +58,32 @@ function App() {
   return (
     <>
       <header className="header">
-        <h1>Task Manager</h1>
+        <h1 className="header__title">Task Manager</h1>
+        <div className="header__actions">
+          <button
+            className="btn btn--primary"
+            type="button"
+            onClick={() => openModal("createTask")}
+          >
+            Create Task
+          </button>
+          <button
+            className="btn btn--primary"
+            type="button"
+            onClick={() => openModal("createList")}
+          >
+            Create Task List
+          </button>
+        </div>
       </header>
-
-      {taskLists.length > 0 ? (
-        taskLists.map((list) => <List key={list.id} data={list} />)
-      ) : (
-        <h2>No hay nada pendiente</h2>
-      )}
-      <button type="button" onClick={() => openModal("createTask")}>
-        Create Task
-      </button>
-      <button type="button" onClick={() => openModal("createList")}>
-        Create List
-      </button>
-      {contentModal && <Modal onClose={closeModal}>{renderForm()}</Modal>}
+      <main className="main">
+        {taskLists && taskLists.length > 0 ? (
+          taskLists.map((list) => <TaskList key={list.id} data={list} />)
+        ) : (
+          <h2 cla>No pending tasks! 🔝🔝</h2>
+        )}
+        {contentModal && <Modal onClose={closeModal}>{renderForm()}</Modal>}
+      </main>
     </>
   );
 }
