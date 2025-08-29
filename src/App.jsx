@@ -55,18 +55,18 @@ function App() {
 
   return (
     <>
-      <header className="header">
-        <h1 className="header__title">Task Manager</h1>
-        <div className="header__actions">
+      <header className="flex w-full flex-col items-center justify-center">
+        <h1 className="my-8 text-5xl">Task Manager</h1>
+        <div className="flex gap-4">
           <button
-            className="btn btn--primary"
+            className="bg-primary-accent hover:bg-primary-accent/80 rounded-lg px-5 py-2 text-white"
             type="button"
             onClick={() => openModal("createTask")}
           >
             Create Task
           </button>
           <button
-            className="btn btn--primary"
+            className="bg-primary-accent hover:bg-primary-accent/80 rounded-lg px-5 py-2 text-white"
             type="button"
             onClick={() => openModal("createList")}
           >
