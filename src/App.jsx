@@ -5,6 +5,7 @@ import CreateTask from "./components/CreateTask";
 import Modal from "./components/Modal";
 import CreateTaskList from "./components/CreateTaskList";
 import TaskList from "./components/TaskList";
+import Button from "./components/Button";
 
 function generateId() {
   return new Date().getTime();
@@ -21,7 +22,7 @@ function App() {
   function renderForm() {
     if (contentModal === "createTask") {
       return <CreateTask taskLists={taskLists} onCreateTask={createTask} />;
-    } else if (contentModal === "createList") {
+    } else if (contentModal === "createTaskList") {
       return (
         <CreateTaskList
           taskLists={taskLists}
@@ -36,6 +37,7 @@ function App() {
     newTaskList.id = generateId();
     newTaskList.order = taskLists.length + 1;
     setTaskLists([...taskLists, newTaskList]);
+    closeModal();
   }
 
   function createTask(newTask) {
@@ -51,6 +53,7 @@ function App() {
       newTaskList,
       ...a.slice(taskListIndex + 1),
     ]);
+    closeModal();
   }
 
   return (
@@ -58,23 +61,19 @@ function App() {
       <header className="flex w-full flex-col items-center justify-center">
         <h1 className="my-8 text-5xl">Task Manager</h1>
         <div className="flex gap-4">
-          <button
-            className="bg-primary-accent hover:bg-primary-accent/80 rounded-lg px-5 py-2 text-white"
+          <Button
+            children="Crear tarea"
             type="button"
             onClick={() => openModal("createTask")}
-          >
-            Create Task
-          </button>
-          <button
-            className="bg-primary-accent hover:bg-primary-accent/80 rounded-lg px-5 py-2 text-white"
+          />
+          <Button
+            children="Crear lista de tareas"
             type="button"
-            onClick={() => openModal("createList")}
-          >
-            Create Task List
-          </button>
+            onClick={() => openModal("createTaskList")}
+          />
         </div>
       </header>
-      <main className="main">
+      <main className="flex flex-col items-center gap-6 overflow-x-auto p-6">
         {taskLists && taskLists.length > 0 ? (
           taskLists.map((list) => <TaskList key={list.id} data={list} />)
         ) : (

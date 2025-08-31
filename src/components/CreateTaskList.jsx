@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "./Button";
+import LabelInput from "./LabelInput";
 
 export default function CreateTaskList({ taskLists, onCreateTaskList }) {
   function onSubmit(formData) {
@@ -10,13 +12,10 @@ export default function CreateTaskList({ taskLists, onCreateTaskList }) {
   }
 
   return (
-    <form action={onSubmit}>
-      <h3>Crear lista</h3>
-      <label>
-        Título
-        <input name="title" type="text" required />
-      </label>
-      <button type="submit">Añadir</button>
+    <form className="flex flex-col gap-4" action={onSubmit}>
+      <h3 className="mb-3 self-center">Crear lista</h3>
+      <LabelInput label="Nombre" name="title" />
+      <Button children="Añadir" />
     </form>
   );
 }

@@ -1,40 +1,49 @@
 import React from "react";
 import { PRIORITIES } from "../constants";
+import Button from "./Button";
+import LabelInput from "./LabelInput";
 
 export default function CreateTask({ taskLists, onCreateTask }) {
   function onSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
-    if (formJson.priority) formJson.priority = Number(formJson.priority);
     if (formJson.list) formJson.list = Number(formJson.list);
     onCreateTask(formJson);
   }
 
   return (
-    <form action={onSubmit}>
-      <h3>Agregar tarea</h3>
-      <label>
-        Título
-        <input name="title" type="text" required />
+    <form className="text-md flex flex-col gap-4" action={onSubmit}>
+      <h3 className="mb-3 self-center">Agregar tarea</h3>
+      <LabelInput label="Nombre" name="title" />
+      <LabelInput label="Descripción" name="description" />
+      <label className="flex flex-col">
+        Prioridad
+        <select
+          className="bg-main-background focus:outline-secondary-accent w-full appearance-none rounded-md p-3 py-1 focus:outline-2 focus:-outline-offset-2"
+          name="priority"
+          required
+        >
+          {PRIORITIES.map((priority) => (
+            <option key={priority.id} value={priority.id}>
+              {priority.value}
+            </option>
+          ))}
+        </select>
       </label>
-      <label>
-        Descripción
-        <input name="description" type="text" required />
+      <label className="flex flex-col">
+        Lista
+        <select
+          className="bg-main-background focus:outline-secondary-accent w-full appearance-none rounded-md p-3 py-1 select-none focus:text-white focus:outline-2 focus:-outline-offset-2"
+          name="list"
+          required
+        >
+          {taskLists?.map((taskList) => (
+            <option key={taskList.id} value={taskList.id}>
+              {taskList.title}
+            </option>
+          ))}
+        </select>
       </label>
-      <select name="priority" required>
-        {PRIORITIES.map((priority) => (
-          <option key={priority.id} value={priority.id}>
-            {priority.value}
-          </option>
-        ))}
-      </select>
-      <select name="list" required>
-        {taskLists?.map((taskList) => (
-          <option key={taskList.id} value={taskList.id}>
-            {taskList.title}
-          </option>
-        ))}
-      </select>
-      <button type="submit">Añadir</button>
+      <Button children="Añadir" />
     </form>
   );
 }
