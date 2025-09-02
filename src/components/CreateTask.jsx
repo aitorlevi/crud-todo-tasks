@@ -18,7 +18,7 @@ export default function CreateTask({ taskLists, onCreateTask }) {
       <label className="flex flex-col">
         Prioridad
         <select
-          className="bg-main-background focus:outline-secondary-accent w-full appearance-none rounded-md p-3 py-1 focus:outline-2 focus:-outline-offset-2"
+          className="bg-background-main focus:outline-accent-600 w-full appearance-none rounded-md p-3 py-1 focus:outline-2 focus:-outline-offset-2"
           name="priority"
           required
         >
@@ -32,7 +32,7 @@ export default function CreateTask({ taskLists, onCreateTask }) {
       <label className="flex flex-col">
         Lista
         <select
-          className="bg-main-background focus:outline-secondary-accent w-full appearance-none rounded-md p-3 py-1 select-none focus:text-white focus:outline-2 focus:-outline-offset-2"
+          className="bg-background-main focus:outline-accent-600 w-full appearance-none rounded-md p-3 py-1 select-none focus:text-white focus:outline-2 focus:-outline-offset-2"
           name="list"
           required
         >

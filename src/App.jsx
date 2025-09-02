@@ -79,8 +79,8 @@ function App() {
         ) : (
           <h2 cla>No pending tasks! 🔝🔝</h2>
         )}
-        {contentModal && <Modal onClose={closeModal}>{renderForm()}</Modal>}
       </main>
+      {contentModal && <Modal onClose={closeModal}>{renderForm()}</Modal>}
     </>
   );
 }

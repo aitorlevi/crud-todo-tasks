@@ -3,21 +3,37 @@
 @theme {
   /* --- Base Colors --- */
   /* The main background of the application. A very dark, almost black gray. */
-  --color-main-background: oklch(0.1835 0.0006 270.81);
+  --color-background-main: oklch(0.1835 0.0006 270.81);
+
   /* Surfaces and cards, a slightly lighter gray for contrast. */
-  --color-surface: oklch(0.2829 0.0008 270.94);
+  --color-background-surface: oklch(0.2829 0.0008 270.94);
+
   /* Main text and headings. */
-  --color-main-text: oklch(0.9231 0.0028 270.89);
+  --color-text-main: oklch(0.9231 0.0028 270.89);
   /* Secondary text, descriptions, and dates. */
-  --color-secondary-text: oklch(0.669 0.0016 270.83);
+  --color-text-secondary: oklch(0.669 0.0016 270.83);
 
   /* --- Accent Colors --- */
   /* Primary accent, ideal for main action buttons. */
-  --color-primary-accent: oklch(0.5362 0.1706 303.41);
+  --color-primary-400: oklch(0.7362 0.1706 303.41);
+  --color-primary-500: oklch(0.6362 0.1706 303.41);
+  --color-primary-600: oklch(0.5362 0.1706 303.41);
+  --color-primary-700: oklch(0.4362 0.1706 303.41);
+  --color-primary-800: oklch(0.3362 0.1706 303.41);
+
   /* Secondary accent, for buttons and interactive elements. */
-  --color-secondary-accent: oklch(0.7163 0.1738 67.5);
+  --color-accent-400: oklch(0.9163 0.1738 67.5);
+  --color-accent-500: oklch(0.8163 0.1738 67.5);
+  --color-accent-600: oklch(0.7163 0.1738 67.5);
+  --color-accent-700: oklch(0.6163 0.1738 67.5);
+  --color-accent-800: oklch(0.5163 0.1738 67.5);
+
   /* Tertiary accent, for icons or distinctive labels. */
-  --color-tertiary-accent: oklch(0.6139 0.2319 337.33);
+  --color-highlight-400: oklch(0.8139 0.2319 337.33);
+  --color-highlight-500: oklch(0.7139 0.2319 337.33);
+  --color-highlight-600: oklch(0.6139 0.2319 337.33);
+  --color-highlight-700: oklch(0.5139 0.2319 337.33);
+  --color-highlight-800: oklch(0.4139 0.2319 337.33);
 
   /* --- Reserved Status & Alert Colors --- */
   /* Success or completed status color (green). */
@@ -30,10 +46,11 @@
   html,
   body {
     min-height: 100%;
-    background-color: var(--color-main-background);
-    color: var(--color-main-text);
+    background-color: var(--color-background-main);
+    color: var(--color-text-main);
     font-family: ui-sans-serif, system-ui, sans-serif;
     margin: 0;
+    line-height: normal;
   }
 
   img,
@@ -59,5 +76,11 @@
   }
   h3 {
     font-size: var(--text-xl);
+  }
+  h4 {
+    font-size: var(--text-lg);
+  }
+  h5 {
+    font-size: var(--text-md);
   }
 }
