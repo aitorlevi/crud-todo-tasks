@@ -6,6 +6,7 @@ import Modal from "./components/Modal";
 import CreateTaskList from "./components/CreateTaskList";
 import TaskList from "./components/TaskList";
 import Button from "./components/Button";
+import { STATUS } from "./utils/constants";
 
 function generateId() {
   return new Date().getTime();
@@ -47,6 +48,8 @@ function App() {
     const newTaskList = { ...taskLists[taskListIndex] };
     newTask.id = generateId();
     newTask.order = newTaskList.length;
+    newTask.date = new Date().toISOString();
+    newTask.status = "pending";
     newTaskList.tasks.push(newTask);
     setTaskLists((a) => [
       ...a.slice(0, taskListIndex),

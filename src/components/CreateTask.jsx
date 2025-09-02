@@ -1,5 +1,5 @@
 import React from "react";
-import { PRIORITIES } from "../constants";
+import { PRIORITIES } from "../utils/constants";
 import Button from "./Button";
 import LabelInput from "./LabelInput";
 
@@ -14,7 +14,7 @@ export default function CreateTask({ taskLists, onCreateTask }) {
     <form className="text-md flex flex-col gap-4" action={onSubmit}>
       <h3 className="mb-3 self-center">Agregar tarea</h3>
       <LabelInput label="Nombre" name="title" />
-      <LabelInput label="Descripción" name="description" />
+      <LabelInput label="Descripción" name="description" isTextarea />
       <label className="flex flex-col">
         Prioridad
         <select
