@@ -6,7 +6,7 @@ import Modal from "./components/Modal";
 import CreateTaskList from "./components/CreateTaskList";
 import TaskList from "./components/TaskList";
 import Button from "./components/Button";
-import TaskContext from "./contexts/TaskContext";
+import { TaskContext } from "./contexts/TaskContext";
 
 function generateId() {
   return new Date().getTime();
@@ -22,7 +22,13 @@ function App() {
 
   function renderForm() {
     if (contentModal === "createTask") {
-      return <CreateTask taskLists={taskLists} onCreateTask={createTask} />;
+      return (
+        <CreateTask
+          taskLists={taskLists}
+          onCreateTask={createTask}
+          onClose={closeModal}
+        />
+      );
     } else if (contentModal === "createTaskList") {
       return (
         <CreateTaskList
@@ -49,7 +55,6 @@ function App() {
     newTask.id = generateId();
     newTask.order = taskList.length;
     newTask.date = new Date().toISOString();
-    newTask.status = "pending";
     taskList.tasks.push(newTask);
     setTaskLists((a) => [
       ...a.slice(0, taskListIndex),
@@ -63,14 +68,15 @@ function App() {
   function updateTask(updatedTask) {
     let taskListId;
     for (let list of taskLists) {
-      if (list.tasks.find((task) => task.id === updatedTask.id)) return list.id;
+      if (list.tasks.find((task) => task.id === updatedTask.id))
+        taskListId = list.id;
     }
     const taskListIndex = taskLists.findIndex(
       (list) => list.id === updatedTask.list,
     );
     const taskList = { ...taskLists[taskListIndex] };
     const taskIndex = taskList.tasks.findIndex(
-      (task) => task.id === updateTask.id,
+      (task) => task.id === updatedTask.id,
     );
     if (taskListId === updatedTask.list) {
       taskList.tasks[taskIndex] = updatedTask;
@@ -81,23 +87,24 @@ function App() {
       ]);
     } else {
       taskList.tasks.splice(taskIndex, 1);
+
       setTaskLists((a) => [
         ...a.slice(0, taskListIndex),
         taskList,
         ...a.slice(taskListIndex + 1),
       ]);
       const newTaskListIndex = taskLists.findIndex(
-        (list) => list.id === updateTask.list,
+        (list) => list.id === updatedTask.list,
       );
       const newTaskList = { ...taskLists[newTaskListIndex] };
-      newTaskList.tasks.push(updateTask);
+      newTaskList.tasks.push(updatedTask);
       setTaskLists((a) => [
         ...a.slice(0, taskListIndex),
         newTaskList,
         ...a.slice(taskListIndex + 1),
       ]);
     }
-    closeModal();
+    return true;
   }
 
   return (

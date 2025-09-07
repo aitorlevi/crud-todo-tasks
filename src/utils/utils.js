@@ -1,5 +1,5 @@
 import { PRIORITIES } from "./constants";
-import { STATUS } from "./constants";
+import { STATE } from "./constants";
 
 export function getPriorities(id) {
   return (
@@ -20,8 +20,8 @@ export function getPriorityColor(id) {
   }
 }
 
-export function getStatus(id) {
-  return STATUS.find((status) => status.id === id)?.value || "Sin estado";
+export function getState(id) {
+  return STATE.find((status) => status.id === id)?.value || "Sin estado";
 }
 
 export function getTaskBackground(id) {

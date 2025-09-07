@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  getStatus,
+  getState,
   getPriorities,
   getTaskBackground,
   getPriorityColor,
@@ -11,6 +11,7 @@ import UpdateTask from "./UpdateTask";
 
 export default function Task({ data }) {
   const { contentModal, openModal, closeModal } = useModal();
+
   return (
     <>
       <article
@@ -18,9 +19,9 @@ export default function Task({ data }) {
         className="bg-background-surface flex min-w-4/5 flex-col gap-1 rounded-sm py-2 pr-2 pl-3 backdrop-grayscale"
       >
         <span
-          className={`${getTaskBackground(data.status)} text-background-main w-fit self-end rounded-sm px-2 py-0.5 text-end text-xs`}
+          className={`${getTaskBackground(data.state)} text-background-main w-fit self-end rounded-sm px-2 py-0.5 text-end text-xs`}
         >
-          {getStatus(data.status)}
+          {getState(data.state)}
         </span>
         <h4 className="">{data.title}</h4>
         <span className="text-text-secondary mb-2 flex-1">
@@ -43,7 +44,7 @@ export default function Task({ data }) {
       </article>
       {contentModal && (
         <Modal onClose={closeModal}>
-          <UpdateTask task={data} />
+          <UpdateTask task={data} onClose={closeModal} />
         </Modal>
       )}
     </>

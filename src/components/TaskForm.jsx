@@ -1,5 +1,5 @@
 import React from "react";
-import { PRIORITIES } from "../utils/constants";
+import { PRIORITIES, STATE } from "../utils/constants";
 import Button from "./Button";
 import LabelInput from "./LabelInput";
 
@@ -8,11 +8,20 @@ export default function TaskForm({
   initialValues = {},
   onSubmit,
   submitLabel = "Guardar",
+  onClose,
 }) {
   function handleSubmit(formData) {
     const formJson = Object.fromEntries(formData.entries());
     if (formJson.list) formJson.list = Number(formJson.list);
-    onSubmit(formJson);
+    if (initialValues) {
+      formJson.id = initialValues.id;
+      formJson.order = initialValues.order;
+      formJson.date = initialValues.date;
+    }
+    if (formJson == initialValues) return;
+    if (onSubmit(formJson)) {
+      onClose();
+    }
   }
 
   return (
@@ -61,6 +70,21 @@ export default function TaskForm({
             {taskLists?.map((taskList) => (
               <option key={taskList.id} value={taskList.id}>
                 {taskList.title}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label className="flex flex-1 flex-col">
+          Estado
+          <select
+            className="bg-background-main focus:outline-accent-600 w-full appearance-none rounded-md border border-gray-700 p-3 py-1 focus:outline-2 focus:-outline-offset-2"
+            name="state"
+            required
+            defaultValue={initialValues.priority || STATE[0].id}
+          >
+            {STATE.map((state) => (
+              <option key={state.id} value={state.id}>
+                {state.value}
               </option>
             ))}
           </select>

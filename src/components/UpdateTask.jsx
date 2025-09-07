@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import TaskForm from "./TaskForm";
-import TaskContext from "../contexts/TaskContext";
-export default function UpdateTask({ task }) {
+import { TaskContext } from "../contexts/TaskContext";
+export default function UpdateTask({ task, onClose }) {
   const { taskLists, updateTask } = useContext(TaskContext);
   return (
     <TaskForm
@@ -9,6 +9,7 @@ export default function UpdateTask({ task }) {
       initialValues={task}
       onSubmit={updateTask}
       submitLabel="Guardar"
+      onClose={onClose}
     />
   );
 }
