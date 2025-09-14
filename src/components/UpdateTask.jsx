@@ -16,7 +16,11 @@ export default function UpdateTask({ task, onClose }) {
         submitLabel="Guardar"
         onClose={onClose}
       />
-      <Button children="Eliminar" onClick={onDeleteTask}></Button>
+      <Button
+        children="Eliminar"
+        className="bg-red-800 lg:w-1/3 lg:self-center"
+        onClick={onDeleteTask}
+      ></Button>
     </>
   );
 }

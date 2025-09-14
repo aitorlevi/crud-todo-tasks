@@ -12,7 +12,6 @@ function generateId() {
   return new Date().getTime();
 }
 
-// Auxiliares reutilizables
 function findListIndexById(lists, id) {
   return lists.findIndex((list) => list.id === id);
 }
@@ -140,7 +139,7 @@ function App() {
 
   return (
     <TaskContext.Provider value={{ taskLists, updateTask, deleteTask }}>
-      <header className="bg-background-main sticky top-0 z-10 flex w-full flex-col items-center justify-center px-8 pb-4">
+      <header className="bg-background-main sticky top-0 z-10 flex w-full flex-col items-center justify-center px-8 pb-4 lg:flex-row lg:justify-between">
         <h1 className="my-5 text-center text-5xl">Task Manager</h1>
         <div className="flex flex-wrap justify-center gap-4">
           <Button
@@ -155,7 +154,7 @@ function App() {
           />
         </div>
       </header>
-      <main className="flex flex-col items-center gap-6 overflow-x-auto p-6">
+      <main className="flex flex-col items-center overflow-x-auto p-6 lg:flex-row lg:items-start">
         {taskLists && taskLists.length > 0 ? (
           taskLists.map((list) => <TaskList key={list.id} data={list} />)
         ) : (

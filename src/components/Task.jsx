@@ -16,7 +16,7 @@ export default function Task({ data }) {
     <>
       <article
         onClick={openModal}
-        className="bg-background-surface flex min-w-4/5 flex-col gap-1 rounded-sm py-2 pr-2 pl-3 backdrop-grayscale"
+        className="bg-background-surface hover:bg-background-surface/55 flex min-w-4/5 cursor-pointer flex-col gap-1 rounded-sm py-2 pr-2 pl-3 backdrop-grayscale lg:min-w-full"
       >
         <span
           className={`${getTaskBackground(data.state)} text-background-main w-fit self-end rounded-sm px-2 py-0.5 text-end text-xs`}

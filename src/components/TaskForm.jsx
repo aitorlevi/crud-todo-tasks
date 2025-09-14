@@ -26,7 +26,7 @@ export default function TaskForm({
 
   return (
     <form
-      className="text-md flex flex-col gap-4 overflow-y-scroll"
+      className="text-md flex flex-col gap-4 overflow-y-scroll lg:overflow-y-auto"
       action={handleSubmit}
     >
       <h3 className="bg-background-main sticky top-0 mb-3 self-center">
@@ -90,7 +90,7 @@ export default function TaskForm({
           </select>
         </label>
       </div>
-      <Button children={submitLabel} />
+      <Button children={submitLabel} className="lg:w-1/3 lg:self-center" />
     </form>
   );
 }

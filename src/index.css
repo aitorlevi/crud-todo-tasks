@@ -83,4 +83,9 @@
   h5 {
     font-size: var(--text-md);
   }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 }
